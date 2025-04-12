@@ -17,8 +17,9 @@ zone ip
 $ docker run --network host redis:7.2.5 --bind 0.0.0.0 
 $ redis-cli -h x.x.x.x -p 6379
 x。x.x.x:6379> exit
+```
 check connection
-
+```
 ```
 
 3. Get the ip address of your host on the docker network
@@ -26,14 +27,15 @@ check connection
 ```
 $ ifconfig
  
-docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
-        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
-        inet6 fe80::42:53ff:fecc:6e16  prefixlen 64  scopeid 0x20<link>
-        ether 02:42:53:cc:6e:16  txqueuelen 0  (Ethernet)
-        RX packets 69  bytes 4268 (4.1 KiB)
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.254.162  netmask 255.255.255.0  broadcast 192.168.254.255
+        inet6 fe80::9f48:4a6f:10c2:b838  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:9b:0b:b0  txqueuelen 1000  (Ethernet)
+        RX packets 1449284  bytes 1109758166 (1.0 GiB)
         RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 133  bytes 269173 (262.8 KiB)
+        TX packets 1277227  bytes 222037834 (211.7 MiB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
 
 ```
 
